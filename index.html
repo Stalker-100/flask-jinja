@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+
+
+{% block title %}Главная страница — {{ site_name }}{% endblock %}
+
+
+{% block content %}
+    <h1>Привет, {{ user.name | capitalize }}</h1>
+    <p>извиняюсь что не увидел домашку - исправляюсь</p>
+
+<!-- условие-->
+    {% if user.is_admin %}
+        <p><b>Статус:</b> Вы вошли как администратор.</p>
+    {% else %}
+        <p><b>Статус:</b> пользователь.</p>
+    {% endif %}
+
+    <h3>Задачи:</h3>
+
+
+    <ul>
+    {% for task in tasks %}
+        <li>{{ loop.index }}. {{ task }}</li>
+    {% else %}
+        <li>Задач пока нет!</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
